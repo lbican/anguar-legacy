@@ -4,5 +4,5 @@ export class Student {
   tuitionShouldBePaid: boolean;
   firstName: string;
   lastName: string;
-  dateOfBirth: Date;
+  dateOfBirth: string;
 }

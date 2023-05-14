@@ -4,6 +4,7 @@ import { StudentService } from '../student.service';
 import { ToastrService } from 'ngx-toastr';
 import { delay } from '../../util/delay';
 import { Router } from '@angular/router';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-student-form',
@@ -24,11 +25,13 @@ export class StudentFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // Empty on init
   }
 
   save() {
-    this.student.dateOfBirth = new Date(1990);
+    this.student.dateOfBirth = new DatePipe('en-US').transform(this.getRandomDate(), 'dd.MM.yyyy.');
     this.saving = true;
+    console.log(this.student);
     if (this.formType === 'CREATE') {
       this.createNewStudent();
     } else if (this.formType === 'EDIT')  {
@@ -37,6 +40,15 @@ export class StudentFormComponent implements OnInit {
       throw Error('UNSUPPORTED FORM TYPE');
     }
   }
+
+  getRandomDate = (): string => {
+    const currentDate = new Date();
+    const randomYear = currentDate.getFullYear() - Math.floor(Math.random() * 3 + 19); // Generate a random year between 19 and 21 years ago
+    const randomMonth = Math.floor(Math.random() * 12); // Generate a random month between 0 and 11
+    const randomDay = Math.floor(Math.random() * 31); // Generate a random day between 0 and 30
+    return new Date(randomYear, randomMonth, randomDay).toISOString().slice(0, 10);
+  }
+
 
   createNewStudent() {
     this.studentService.addStudent(this.student).subscribe(
