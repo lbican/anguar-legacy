@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-6" *ngIf="student">
+    <div class="card">
+      <div class="card-header">
+        Detalji studenta
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            {{student.firstName}} {{student.lastName}}
+          </div>
+          <div class="col-md-12">
+            {{student.jmbag}} <small id="jmbag" class="d-inline text-muted">(JMBAG)</small>
+          </div>
+          <div class="col-md-12">
+            {{student.numberOfECTS}} <small id="ects" class="d-inline text-muted">(ECTS)</small>
+          </div>
+          <div class="col-md-12" *ngIf="student.tuitionShouldBePaid">
+            Student treba platiti školarinu.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6" *ngIf="courses">
+    <div class="card">
+      <div class="card-header">
+        Kolegiji na kojima je student upisan
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12" *ngFor="let course of courses">
+            {{course.name}}
+          </div>
+          <div class="col-md-12" *ngIf="courses.length === 0">
+            Student nije upisao ni jedan kolegij.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-outline-secondary float-right" routerLink="/students">Povratak na pregled studenata</button>

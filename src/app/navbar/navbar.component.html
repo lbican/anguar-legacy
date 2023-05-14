@@ -1,0 +1,51 @@
+<nav class="navbar fixed-top bg-light navbar-light navbar-expand-lg p-0 shadow-sm">
+    <a [routerLink]="['/']" class="navbar-brand">
+        <h3 class="ml-2 mb-0 mt-0 float-right" style="line-height: 40px">Student <span>APP</span></h3>
+    </a>
+
+    <button (click)="toggleNavbar()" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent"
+        data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto pl-3">
+            <!-- here we can add other links such as student etc, just in <li> tag -->
+            <!-- user stuff -->
+            <ul class="navbar-nav" *ngIf="isUserLoggedIn()">
+                <li class="nav-item">
+                    <a class="nav-link cursor-pointer">
+                        <span>Korisničko ime: {{userService?.currentUser?.username}}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link cursor-pointer">
+                        <span>|</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link cursor-pointer">
+                        <span>Uloga: <span *ngFor="let role of userService?.currentUser?.authorities">{{role}} </span></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link cursor-pointer">
+                        <span>|</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link cursor-pointer" id="logout" (click)="logout()">
+                        <span> Odjava</span>
+                    </a>
+                </li>
+            </ul>
+
+            <li class="nav-item" routerLink="/login" *ngIf="!isUserLoggedIn()">
+                <a class="nav-link cursor-pointer" id="login">
+                    <span> Prijava</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

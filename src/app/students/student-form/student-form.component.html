@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-body">
+        <form #studentForm="ngForm">
+            <div class="form-group">
+                <label for="ime">Ime</label>
+                <input [(ngModel)]="student.firstName" type="text" class="form-control" id="ime" name="ime"
+                    placeholder="Unesite ime studenta" required>
+            </div>
+            <div class="form-group">
+                <label for="prezime">Prezime</label>
+                <input [(ngModel)]="student.lastName" type="text" class="form-control" id="prezime" name="prezime"
+                    placeholder="Unesite prezime studenta" required>
+            </div>
+            <div class="form-group">
+                <label for="jmbag">JMBAG</label>
+                <input [(ngModel)]="student.jmbag" type="text" class="form-control" id="jmbag" name="jmbag"
+                    minlength="10" maxlength="10" placeholder="Unesite JMBAG studenta" required #jmbag="ngModel">
+                <div *ngIf="!studentForm.pristine && jmbag.invalid" class="invalid-feedback d-block">
+                    JMBAG mora sadržavati 10 znakova
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ects">Broj ECTS bodova</label>
+                <input [(ngModel)]="student.numberOfECTS" type="number" class="form-control" id="ects" name="ects"
+                    placeholder="Unesite broj ECTS bodova" required>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="float-right">
+                        <button routerLink="/students" [disabled]="saving" class="btn btn-outline-secondary mr-4"
+                            type="button">Odustani</button>
+                        <button (click)="save()" [disabled]="!studentForm.valid || saving" class="btn btn-success"
+                            type="button">Spremi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
