@@ -22,7 +22,7 @@ export class UserService {
 
   isRoleAdmin(): boolean {
     if (this.currentUser) {
-      return this.currentUser.authorities.some((authority: string) => authority === Authority.ADMIN);
+      return this.currentUser.authorities.some((authority) => authority.name === Authority.ADMIN);
     } else {
       return false;
     }

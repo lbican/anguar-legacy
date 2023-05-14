@@ -3,5 +3,10 @@ export class User {
     username: string;
     firstName: string;
     lastName: string;
-    authorities: string[];
+    authorities: Authority[];
+}
+
+interface Authority{
+  id: number,
+  name: string,
 }
