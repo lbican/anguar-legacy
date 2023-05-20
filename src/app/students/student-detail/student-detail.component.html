@@ -2,7 +2,7 @@
   <div class="col-md-6" *ngIf="student">
     <div class="card">
       <div class="card-header">
-        Detalji studenta
+        {{'students.detailsForm.studentDetails' | translate}}
       </div>
       <div class="card-body">
         <div class="row">
@@ -16,7 +16,7 @@
             {{student.numberOfECTS}} <small id="ects" class="d-inline text-muted">(ECTS)</small>
           </div>
           <div class="col-md-12" *ngIf="student.tuitionShouldBePaid">
-            Student treba platiti školarinu.
+            {{'students.detailsForm.tuitionPaymentMessage' | translate}}
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@
   <div class="col-md-6" *ngIf="courses">
     <div class="card">
       <div class="card-header">
-        Kolegiji na kojima je student upisan
+        {{'students.detailsForm.courses' | translate}}
       </div>
       <div class="card-body">
         <div class="row">
@@ -34,7 +34,7 @@
             {{course.name}}
           </div>
           <div class="col-md-12" *ngIf="courses.length === 0">
-            Student nije upisao ni jedan kolegij.
+            {{'students.detailsForm.notAttendingAnyCourse' | translate}}
           </div>
         </div>
       </div>
@@ -42,4 +42,4 @@
   </div>
 </div>
 
-<button type="button" class="btn btn-outline-secondary float-right" routerLink="/students">Povratak na pregled studenata</button>
+<button type="button" class="btn btn-outline-secondary float-right" routerLink="/students">{{'students.detailsForm.back' | translate}}</button>

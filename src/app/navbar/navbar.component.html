@@ -10,13 +10,29 @@
     </button>
 
     <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-secondary" id="languageDropdown"
+                    ngbDropdownToggle>{{currentLanguage}}
+              {{'navbar.language' | translate }}
+            </button>
+            <div ngbDropdownMenu aria-labelledby="languageDropdown">
+              <button ngbDropdownItem
+                      (click)="onLanguageChange('hr')">{{'language.croatian' | translate}}</button>
+              <button ngbDropdownItem
+                      (click)="onLanguageChange('en')">{{'language.english' | translate}}</button>
+            </div>
+          </div>
+        </li>
+      </ul>
         <ul class="navbar-nav ml-auto pl-3">
             <!-- here we can add other links such as student etc, just in <li> tag -->
             <!-- user stuff -->
             <ul class="navbar-nav" *ngIf="isUserLoggedIn()">
                 <li class="nav-item">
                     <a class="nav-link cursor-pointer">
-                        <span>Korisničko ime: {{userService?.currentUser?.username}}</span>
+                      <span>{{'navbar.username' | translate}}: {{userService?.currentUser?.username}}</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -36,14 +52,14 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link cursor-pointer" id="logout" (click)="logout()">
-                        <span> Odjava</span>
+                      <span> {{'navbar.logout' | translate}}</span>
                     </a>
                 </li>
             </ul>
 
             <li class="nav-item" routerLink="/login" *ngIf="!isUserLoggedIn()">
                 <a class="nav-link cursor-pointer" id="login">
-                    <span> Prijava</span>
+                    <span> {{'navbar.login' | translate}}</span>
                 </a>
             </li>
         </ul>

@@ -1,22 +1,22 @@
 <div class="clearfix">
-  <h5 class="float-left">Popis studenata
+  <h5 class="float-left">{{'students.title' | translate}}
   </h5>
   <button type="button" class="btn btn-primary float-right" routerLink="/students/create" *ngIf="userService.isRoleAdmin()">
-    Dodaj novog studenta</button>
+    {{'students.create' | translate}}</button>
 </div>
 
 <table class="table mt-4">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Ime</th>
-      <th scope="col">Prezime</th>
+      <th scope="col">{{'students.firstName' | translate}}</th>
+      <th scope="col">{{'students.lastName' | translate}}</th>
       <th scope="col">JMBAG</th>
       <th scope="col">ECTS</th>
       <ng-container *ngIf="userService.isRoleAdmin()">
-        <th scope="col" class="text-center">Detalji</th>
-        <th scope="col" class="text-center">Uređivanje</th>
-        <th scope="col" class="text-center">Brisanje</th>
+        <th scope="col" class="text-center">{{'students.details' | translate}}</th>
+        <th scope="col" class="text-center">{{'students.edit' | translate}}</th>
+        <th scope="col" class="text-center">{{'students.delete' | translate}}</th>
       </ng-container>
     </tr>
   </thead>

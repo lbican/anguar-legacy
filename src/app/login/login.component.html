@@ -12,19 +12,19 @@
                     <div class="card-body">
                         <form #authenticationForm="ngForm" class="form-signin" name="authenticationForm">
                             <div class="text-center mb-4">
-                                <h1 class="h3 mb-3 font-weight-normal">Prijava</h1>
+                              <h1 class="h3 mb-3 font-weight-normal">{{'login.title' | translate}}</h1>
                             </div>
                             <div class="form-label-group mb-3">
-                                <label>Korisničko ime</label>
+                              <label>{{'login.username' | translate}}</label>
                                 <input [(ngModel)]="userCredentials.username" [disabled]="authenticating" appInputAutofocus
                                     autocomplete="username" class="form-control" name="username"
-                                    placeholder="Unesite korisničko ime" required type="username">
+                                    placeholder="{{'login.usernamePlaceholder' | translate}}" required type="username">
                             </div>
                             <div class="form-label-group">
-                                <label>Lozinka</label>
+                              <label>{{'login.password' | translate}}</label>
                                 <input [(ngModel)]="userCredentials.password" [disabled]="authenticating"
                                     autocomplete="current-password" class="form-control" name="password"
-                                    placeholder="Unesite lozinku" required type="password">
+                                       placeholder="{{'login.passwordPlaceholder' | translate}}" required type="password">
                             </div>
                             <button (click)="login()"
                                 [disabled]="!authenticationForm.valid || authenticating"
@@ -34,7 +34,7 @@
                             </button>
                         </form>
                         <div class="alert alert-danger mt-2" *ngIf="loginFailed">
-                            Neuspješna prijava! Provjerite podatke i pokušajte ponovno.
+                          {{'login.loginError' | translate}}
                         </div>
                     </div>
                 </div>

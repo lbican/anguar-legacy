@@ -3,6 +3,8 @@ import { UserService } from '../user/user.service';
 import { LoginService } from '../login/login.service';
 import { User } from '../user/user.model';
 import { Router } from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
+import {LanguageEnum} from '../constants/language.enum';
 
 @Component({
   selector: 'app-navbar',
@@ -12,11 +14,14 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   isNavbarCollapsed: boolean;
+  currentLanguage: string;
 
   constructor(
     private loginService: LoginService,
     public userService: UserService,
-    private router: Router) {
+    private router: Router,
+    private translateService: TranslateService,
+  ) {
   }
 
   ngOnInit(): void {
@@ -38,5 +43,21 @@ export class NavbarComponent implements OnInit {
 
   isUserLoggedIn(): boolean {
     return !!this.userService.currentUser;
+  }
+
+  setCurrentLanguageDropdownValue() {
+    if (this.translateService.currentLang === LanguageEnum.HR) {
+      this.translateService.get('language.croatian').subscribe(language => this.currentLanguage = language);
+    } else if (this.translateService.currentLang === LanguageEnum.EN) {
+      this.translateService.get('language.english').subscribe(language => this.currentLanguage = language);
+    } else {
+      throw Error('Unknown current language!');
+    }
+  }
+
+  onLanguageChange(newLanguage: string) {
+    this.translateService.use(newLanguage).subscribe(
+      languageSwitched => this.setCurrentLanguageDropdownValue()
+    );
   }
 }
